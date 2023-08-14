@@ -73,13 +73,48 @@ SnipeSdk.init("YOUR_API_KEY")
 
 The `signUp` function in the `SnipeSdk` library allows you to perform a sign-up operation by creating a document in the Snipe database and returning the associated Snipe ID.
 
+To generate a hash, you'll commonly use libraries that provide cryptographic functions. Here's an example using Kotlin with the Java's built-in MessageDigest:
+
+```kotlin
+import java.security.MessageDigest
+import java.nio.charset.StandardCharsets
+
+const val HASH_KEY = "your_secret_key_here"  // Adjust this secret key as needed
+
+fun generateHash(userId: String, phone: String, email: String): String {
+    // Concatenate your variables
+    val input = "$userId.$phone.$email.$HASH_KEY"
+
+    // Create a SHA-256 digest
+    val digest = MessageDigest.getInstance("SHA-256")
+    val hash = digest.digest(input.toByteArray(StandardCharsets.UTF_8))
+
+    // Convert the hash bytes to a hex string
+    return bytesToHex(hash)
+}
+
+fun bytesToHex(bytes: ByteArray): String {
+    val hexChars = "0123456789ABCDEF"
+    val result = StringBuilder(bytes.size * 2)
+
+    bytes.forEach { byte ->
+        val i = byte.toInt()
+        result.append(hexChars[i shr 4 and 0x0F])
+        result.append(hexChars[i and 0x0F])
+    }
+
+    return result.toString()
+}
+
+```
+
 #### Parameters
 
 - `hash` (Type: `String`): The input hash value that will be used to perform the sign-up operation.
 
 #### Return Value
 
-- `String`: The Snipe ID associated with the created document in the Snipe database.
+- `String`: The Snipe User ID associated with the created document in the Snipe database.
 
 #### Usage
 
@@ -95,7 +130,7 @@ The `getCoinData` function in the `SnipeSdk` library allows you to retrieve coin
 
 #### Parameters
 
-- `snipeId` (Type: `String`): The Snipe ID for which you want to retrieve the coin data.
+- `snipeId` (Type: `String`): The Snipe User ID for which you want to retrieve the coin data.
 
 #### Return Value
 
@@ -104,7 +139,7 @@ The `getCoinData` function in the `SnipeSdk` library allows you to retrieve coin
 #### Usage
 
 ```kotlin
-val snipeId = "your_snipe_id"
+val snipeUserId = "your_snipe_id"
 val snipeSdk = SnipeSdk.get()
 val coinData = snipeSdk.getCoinData(snipeId)
 ```
@@ -117,6 +152,7 @@ The `trackEvent` function in the `SnipeSdk` library allows you to track and trig
 #### Parameters
 
 - `eventId` (Type: `String`): The ID of the event you want to track.
+- `snipeUserId` (Type: `String`): The Snipe User ID for which you want to retrieve the coin data.
 - `transactionAmount` (Type: `Int?`, Default: `null`): The transaction amount associated with the event (optional).
 - `partialPercentage` (Type: `Int?`, Default: `null`): The partial percentage of the event (optional).
 
