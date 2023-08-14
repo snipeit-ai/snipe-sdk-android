@@ -148,7 +148,7 @@ The `getCoinData` function in the `SnipeSdk` library allows you to retrieve coin
 #### Usage
 
 ```kotlin
-val snipeUserId = "your_snipe_id"
+val snipeUserId = "snipe_user_id"
 val snipeSdk = SnipeSdk.get()
 val coinData = snipeSdk.getCoinData(snipeId)
 ```
