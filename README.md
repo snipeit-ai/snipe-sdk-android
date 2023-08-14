@@ -173,8 +173,9 @@ This function does not have a return value. It triggers an event in the Snipe sy
 
 ```kotlin
 val eventId = "your_event_id"
+val snipeUserId = "your_snipe_user_id"
 val transactionAmount = 100
 val partialPercentage = 50
 val snipeSdk = SnipeSdk.get()
-snipeSdk.trackEvent(eventId, transactionAmount, partialPercentage)
+snipeSdk.trackEvent(eventId, snipeUserId, transactionAmount, partialPercentage)
 ```
