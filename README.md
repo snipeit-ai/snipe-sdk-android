@@ -107,6 +107,15 @@ fun bytesToHex(bytes: ByteArray): String {
 }
 
 ```
+Use the generateHash function to create a unique hash for your user and share it with us so that by mistakenly you don't add same user twice.
+
+```kotlin
+    val userId = "12345"
+    val phone = "+123456789"
+    val email = "example@example.com"
+
+    val hash = generateHash(userId, phone, email)
+```
 
 #### Parameters
 
