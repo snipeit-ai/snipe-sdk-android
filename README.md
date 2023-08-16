@@ -10,6 +10,7 @@ The SnipeSdk library provides a seamless integration of Snipe functionality into
   - [Initialization](#initialization)
   - [Sign Up](#sign-up)
   - [Get Coin Data](#get-coin-data)
+  - [Get Token History](#get-token-history)
   - [Track Event](#track-event)
 
 
@@ -151,6 +152,26 @@ The `getCoinData` function in the `SnipeSdk` library allows you to retrieve coin
 val snipeUserId = "snipe_user_id"
 val snipeSdk = SnipeSdk.get()
 val coinData = snipeSdk.getCoinData(snipeId)
+```
+
+### Get Token History
+
+The `getTokenHistory` function in the `SnipeSdk` library allows you to retrieve transaction data associated with a specific Snipe ID from the Snipe database.
+
+#### Parameters
+
+- `snipeUserId` (Type: `String`): The Snipe User ID for which you want to retrieve the coin data.
+
+#### Return Value
+
+- `List<Map<String, Any>>`: A list of maps containing coin data. Each map represents a coin with its associated attributes.
+
+#### Usage
+
+```kotlin
+val snipeUserId = "snipe_user_id"
+val snipeSdk = SnipeSdk.get()
+val tokenHistoryData = snipeSdk.getTokenHistory(snipeUserId)
 ```
 
 ### Track Event
