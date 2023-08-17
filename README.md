@@ -11,6 +11,7 @@ The SnipeSdk library provides a seamless integration of Snipe functionality into
   - [Sign Up](#sign-up)
   - [Get Coin Data](#get-coin-data)
   - [Get Token History](#get-token-history)
+  - [Get Token Details](#get-token-details)
   - [Track Event](#track-event)
 
 
@@ -172,6 +173,26 @@ The `getTokenHistory` function in the `SnipeSdk` library allows you to retrieve 
 val snipeUserId = "snipe_user_id"
 val snipeSdk = SnipeSdk.get()
 val tokenHistoryData = snipeSdk.getTokenHistory(snipeUserId)
+```
+
+### Get Token Details
+
+The `getTokenDetails` function in the `SnipeSdk` library allows you to retrieve token data associated with a specific Snipe Client from the Snipe database.
+
+#### Parameters
+
+- `snipeUserId` (Type: `String`): The Snipe User ID for which you want to retrieve the token data.
+
+#### Return Value
+
+- `List<Map<String, Any>>`: A list of maps containing token data. Each map represents a token with its associated attributes like image and ids of token.
+
+#### Usage
+
+```kotlin
+val snipeUserId = "snipe_user_id"
+val snipeSdk = SnipeSdk.get()
+val tokenDetails = snipeSdk.getTokenDetails(snipeUserId)
 ```
 
 ### Track Event
